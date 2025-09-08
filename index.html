@@ -354,10 +354,21 @@
         let isPlaying = false;
         let autoAdvanceTimer = null;
         let userInteracted = false;
+        let monitoringInterval = null;
 
         // YouTube API ready callback
         function onYouTubeIframeAPIReady() {
             console.log('YouTube API is ready');
+        }
+
+        // Player ready callback
+        function onPlayerReady(event) {
+            console.log('Player is ready');
+            // Start monitoring interval for end time detection
+            if (monitoringInterval) {
+                clearInterval(monitoringInterval);
+            }
+            monitoringInterval = setInterval(checkVideoEndTime, 500); // Check every 500ms
         }
 
         // YouTube player state change handler
@@ -521,6 +532,12 @@
                 autoAdvanceTimer = null;
             }
             
+            // Clear any existing monitoring interval
+            if (monitoringInterval) {
+                clearInterval(monitoringInterval);
+                monitoringInterval = null;
+            }
+            
             // Reset user interaction flag
             userInteracted = false;
 
@@ -557,7 +574,8 @@
                         modestbranding: 1
                     },
                     events: {
-                        'onStateChange': onPlayerStateChange
+                        'onStateChange': onPlayerStateChange,
+                        'onReady': onPlayerReady
                     }
                 });
             } else {
