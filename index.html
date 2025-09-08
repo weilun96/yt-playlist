@@ -361,6 +361,7 @@
 
         // Process playlist data (common function for both file and text input)
         function processPlaylistData(data) {
+            console.log('Processing playlist data:', data);
             if (!Array.isArray(data)) {
                 throw new Error('JSON must be an array');
             }
@@ -383,14 +384,20 @@
             });
 
             playlists = data.filter(item => item.playlist_id && item.video_list);
+            console.log('Filtered playlists:', playlists);
             
             if (playlists.length === 0) {
+                console.log('No valid playlists found');
                 alert('No valid playlists found in the JSON data');
                 return;
             }
 
             populatePlaylistSelector();
-            alert(`Loaded ${playlists.length} playlist(s) successfully!`);
+            console.log('Playlist selector populated');
+            // Only show alert for manual loading, not auto-loading
+            if (document.getElementById('jsonInput').value.trim() !== '') {
+                alert(`Loaded ${playlists.length} playlist(s) successfully!`);
+            }
         }
 
         // Load playlist data from JSON input
@@ -558,14 +565,17 @@
 
         // Auto-load playlist.json on page load
         async function loadDefaultPlaylist() {
+            console.log('Attempting to load playlist.json...');
             try {
-                const response = await fetch('playlist.json');
+                const response = await fetch('./playlist.json');
+                console.log('Response status:', response.status);
                 if (response.ok) {
                     const data = await response.json();
+                    console.log('JSON data loaded:', data);
                     processPlaylistData(data);
                     console.log('Default playlist loaded successfully');
                 } else {
-                    console.log('playlist.json not found, using sample data');
+                    console.log('playlist.json not found (status:', response.status, '), using sample data');
                     loadSampleData();
                 }
             } catch (error) {
