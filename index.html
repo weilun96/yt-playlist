@@ -302,6 +302,7 @@
             }
         }
     </style>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
@@ -354,6 +355,21 @@
         let autoAdvanceTimer = null;
         let userInteracted = false;
 
+        // YouTube API ready callback
+        function onYouTubeIframeAPIReady() {
+            console.log('YouTube API is ready');
+        }
+
+        // YouTube player state change handler
+        function onPlayerStateChange(event) {
+            // YouTube player states:
+            // -1 (unstarted), 0 (ended), 1 (playing), 2 (paused), 3 (buffering), 5 (cued)
+            console.log('Player state changed:', event.data);
+            if (event.data === 0) { // Video ended
+                console.log('Video ended, playing next...');
+                playNextVideo();
+            }
+        }
 
         // Process playlist data (common function for both file and text input)
         function processPlaylistData(data) {
@@ -494,15 +510,7 @@
             // Create player HTML
             playerContainer.innerHTML = `
                 <div class="video-player">
-                    <iframe 
-                        id="youtubePlayer"
-                        width="100%" 
-                        height="100%" 
-                        src="https://www.youtube.com/embed/${video.video_id}?start=${video.start}${video.end > 0 ? `&end=${video.end}` : ''}&autoplay=1&enablejsapi=1"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <div id="youtubePlayer"></div>
                 </div>
                 <div class="video-info">
                     <h3>${video.video_name || 'Untitled Video'}</h3>
@@ -514,26 +522,47 @@
                 </div>
             `;
 
-            // Set up auto-advance if end time is specified
-            if (video.end > 0) {
-                const duration = video.end - video.start;
-                autoAdvanceTimer = setTimeout(() => {
-                    if (!userInteracted) {
-                        playNextVideo();
-                    }
-                }, duration * 1000);
-            }
-
-            // Add event listeners to detect user interaction
-            const iframe = document.getElementById('youtubePlayer');
-            if (iframe) {
-                iframe.addEventListener('click', () => {
-                    userInteracted = true;
-                    if (autoAdvanceTimer) {
-                        clearTimeout(autoAdvanceTimer);
-                        autoAdvanceTimer = null;
+            // Create YouTube player using the API
+            if (typeof YT !== 'undefined' && YT.Player) {
+                player = new YT.Player('youtubePlayer', {
+                    width: '100%',
+                    height: '100%',
+                    videoId: video.video_id,
+                    playerVars: {
+                        start: video.start,
+                        end: video.end > 0 ? video.end : undefined,
+                        autoplay: 1,
+                        controls: 1,
+                        rel: 0,
+                        modestbranding: 1
+                    },
+                    events: {
+                        'onStateChange': onPlayerStateChange
                     }
                 });
+            } else {
+                // Fallback to iframe if API is not loaded
+                const playerDiv = document.getElementById('youtubePlayer');
+                playerDiv.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${video.video_id}?start=${video.start}${video.end > 0 ? `&end=${video.end}` : ''}&autoplay=1&enablejsapi=1"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                
+                // Fallback timer for iframe method
+                if (video.end > 0) {
+                    const duration = video.end - video.start;
+                    autoAdvanceTimer = setTimeout(() => {
+                        if (!userInteracted) {
+                            playNextVideo();
+                        }
+                    }, duration * 1000);
+                }
             }
         }
 
