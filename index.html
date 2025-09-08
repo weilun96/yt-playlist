@@ -309,8 +309,10 @@
         <div class="main-content">
             <div class="sidebar">
                 <div class="playlist-info">
-                    <h3 style="color: #8b4513; margin-bottom: 15px; font-weight: 500;">🎵 Sk CT Solemnisation Playlist</h3>
-                    <p style="color: #8b4513; font-size: 14px; opacity: 0.8; margin-bottom: 20px;">20 wedding ceremony videos ready to play</p>
+                    <h3 style="color: #8b4513; margin-bottom: 15px; font-weight: 500;">🎵 Sk CT Solemnisation Playlist
+                    </h3>
+                    <p style="color: #8b4513; font-size: 14px; opacity: 0.8; margin-bottom: 20px;">20 wedding ceremony
+                        videos ready to play</p>
                 </div>
 
                 <div class="playlist-selector">
@@ -374,7 +376,7 @@
                 return item.playlist_id && item.video_list;
             });
             console.log('Filtered playlists:', playlists);
-            
+
             if (playlists.length === 0) {
                 console.log('No valid playlists found');
                 alert('No valid playlists found in the JSON data');
@@ -534,7 +536,7 @@
         });
 
         // Load default playlist when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading hardcoded playlist data...');
             processPlaylistData(defaultPlaylistData);
         });
@@ -689,28 +691,441 @@
             },
             {
                 "playlist_id": "PLTkJ3R8lZRaMFdBlJeNQQH8VUoRnxTXqQ",
-                "playlist_name": "Additional Playlist",
+                "playlist_name": "SkCT Wedding Songs",
                 "video_list": [
                     {
-                        "video_id": "dQw4w9WgXcQ",
+                        "video_id": "JWeI4M-nBBU",
+                        "video_name": "我是如此相信",
+                        "description": "wedding ceremony - part 1",
                         "start": 0,
-                        "end": 0,
-                        "description": "Sample video from additional playlist",
-                        "video_name": "Sample Video 1"
+                        "end": 0
                     },
                     {
-                        "video_id": "jNQXAC9IVRw",
+                        "video_id": "4rWpLcoCZTc",
+                        "video_name": "（伴奏版）我是如此相信 - 周杰伦 《歌词拼音》【我是如此相信 在背后支撑的是你】",
+                        "description": "wedding ceremony - part 2",
                         "start": 0,
-                        "end": 0,
-                        "description": "Another sample video",
-                        "video_name": "Sample Video 2"
+                        "end": 0
                     },
                     {
-                        "video_id": "M7lc1UVf-VE",
+                        "video_id": "ByfFurjQDb0",
+                        "video_name": "Calum Scott, Leona Lewis - You Are The Reason (Duet Version)",
+                        "description": "wedding ceremony - part 3",
                         "start": 0,
-                        "end": 0,
-                        "description": "Third sample video",
-                        "video_name": "Sample Video 3"
+                        "end": 0
+                    },
+                    {
+                        "video_id": "aBwOMlSjh48",
+                        "video_name": "林俊傑 JJ Lin 《將故事寫成我們 The Story Of Us》Official Lyric Video",
+                        "description": "wedding ceremony - part 4",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "ZsbaD7-4bgc",
+                        "video_name": "林俊傑 JJ Lin《裹著心的光 Light Of Sanctuary》Official Music Video",
+                        "description": "wedding ceremony - part 5",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "iE0l8Tx62DE",
+                        "video_name": "林俊傑 JJ Lin - 那些你很冒險的夢 Those Were The Days (官方完整 HD 高畫質版 MV)",
+                        "description": "wedding ceremony - part 6",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "VTSH-YyBXIw",
+                        "video_name": "Jay Chou - Angel",
+                        "description": "wedding ceremony - part 7",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "Q3U7_D4aBZg",
+                        "video_name": "Taiwanese superstar Jay Chou's wedding video",
+                        "description": "wedding ceremony - part 8",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "odNYK272RtQ",
+                        "video_name": "周杰倫 Jay Chou【愛的飛行日記 Diary of Love (feat. 楊瑞代 Gary)】Official MV",
+                        "description": "wedding ceremony - part 9",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "an4ySOlsUMY",
+                        "video_name": "Ellie Goulding - How Long Will I Love You (Official Video)",
+                        "description": "wedding ceremony - part 10",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "qIt6KCwlFPw",
+                        "video_name": "TAEYANG - WEDDING DRESS M/V [HD]",
+                        "description": "wedding ceremony - part 11",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "SfE6cG4KfHA",
+                        "video_name": "薛之謙 Joker Xue《天外來物》Official Music Video",
+                        "description": "wedding ceremony - part 12",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "5-7u399KNok",
+                        "video_name": "爱不走-薜之谦(薛之谦)高清完整版 留言必上传",
+                        "description": "wedding ceremony - part 13",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "UwuAPyOImoI",
+                        "video_name": "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V",
+                        "description": "wedding ceremony - part 14",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "bu7nU9Mhpyo",
+                        "video_name": "周杰倫 Jay Chou (特別演出: 派偉俊)【告白氣球 Love Confession】Official MV",
+                        "description": "wedding ceremony - part 15",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "tyoAsprwDRc",
+                        "video_name": "Kina Grannis - Can't Help Falling In Love (From Crazy Rich Asians)",
+                        "description": "wedding ceremony - part 16",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "YD9r_tTtlaA",
+                        "video_name": "小幸運 (我的少女時代電影主題曲)",
+                        "description": "wedding ceremony - part 17",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "uv6fDAgzNYs",
+                        "video_name": "하울&제이 - Perhaps Love (사랑인가요) / 가사 / 드라마 '궁' OST",
+                        "description": "wedding ceremony - part 18",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "m4nu_F_9dWU",
+                        "video_name": "孫燕姿 Sun Yan-Zi - 遇見 Encounter (official 官方完整版MV)",
+                        "description": "wedding ceremony - part 19",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "fTc5tuEn6_U",
+                        "video_name": "[MV] CHEN (Chen) XPunch (Punch) - Everytime l Son of the Sun OST Part.2",
+                        "description": "wedding ceremony - part 20",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "yMmw3vTB6os",
+                        "video_name": "Yoonmirae - ALWAYS Lyrics (easy lyrics)",
+                        "description": "wedding ceremony - part 21",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "kTCmv8_AnhM",
+                        "video_name": "[MV] XIA(JUNSU) - How Can I Love You l Descendants of the Sun 태양의 후예 OST",
+                        "description": "wedding ceremony - part 22",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "SdHQkkRc-hc",
+                        "video_name": "[MV] K.will(케이윌) - Talk Love(말해! 뭐해?) l Descendants of the Sun 태양의 후예 OST",
+                        "description": "wedding ceremony - part 23",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "ToASX6axGuw",
+                        "video_name": "[MV] Gummy(거미) - You Are My Everything l Descendants of the Sun 태양의 후예 OST",
+                        "description": "wedding ceremony - part 24",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "-BjZmE2gtdo",
+                        "video_name": "Taylor Swift - Lover (Official Music Video)",
+                        "description": "wedding ceremony - part 25",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "rtOvBOTyX00",
+                        "video_name": "Christina Perri - A Thousand Years [Official Music Video]",
+                        "description": "wedding ceremony - part 26",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "AKjgg3I6HEQ",
+                        "video_name": "林俊傑 JJ Lin 《將故事寫成我們 The Story Of Us》Official Music Video",
+                        "description": "wedding ceremony - part 27",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "PEM0Vs8jf1w",
+                        "video_name": "JVKE - golden hour (official music video)",
+                        "description": "wedding ceremony - part 28",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "ok2pqepWTLU",
+                        "video_name": "[선재 업고 튀어 (Lovely Runner) OST Part 8] 10CM - 봄눈 (Spring Snow) MV",
+                        "description": "wedding ceremony - part 29",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "0dLezZIZOAQ",
+                        "video_name": "It's You",
+                        "description": "wedding ceremony - part 30",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "Y2E71oe0aSM",
+                        "video_name": "Dan + Shay, Justin Bieber - 10,000 Hours (Official Music Video)",
+                        "description": "wedding ceremony - part 31",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "-_J3HrazLYU",
+                        "video_name": "黃霄雲 - 星辰大海「會不會我們的愛，會被風吹向大海」【動態歌詞/pīn yīn gē cí】",
+                        "description": "wedding ceremony - part 32",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "xLscpRjb8DI",
+                        "video_name": "莫文蔚 Karen Mok《這世界那麼多人 Empty World》Official MV - 電影「我要我們在一起」主題曲",
+                        "description": "wedding ceremony - part 33",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "L0Q2LdFeafs",
+                        "video_name": "Stephanie Poetri & Jackson Wang - I Love You 3000 II (Lyrics)",
+                        "description": "wedding ceremony - part 34",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "55lt3goz2DQ",
+                        "video_name": "Jackson Wang - 爱 (I Love You 3000 Chinese version) [Lyrics (CHIN|PIN|ENG)]",
+                        "description": "wedding ceremony - part 35",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "Bbp9ZaJD_eA",
+                        "video_name": "周杰倫 Jay Chou【七里香 Orange Jasmine】-Official Music Video",
+                        "description": "wedding ceremony - part 36",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "VitJnr3IySc",
+                        "video_name": "周杰倫 Jay Chou【蒲公英的約定 A Dandelion's Promise】-Official Music Video",
+                        "description": "wedding ceremony - part 37",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "kYhh1PpsOg4",
+                        "video_name": "周杰倫 Jay Chou【珊瑚海 Coral Sea (feat. 梁心頤 Lara)】-Official Music Video",
+                        "description": "wedding ceremony - part 38",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "q1ww6bDjfiI",
+                        "video_name": "周杰倫 Jay Chou【花海 Floral Sea】-Official Music Video",
+                        "description": "wedding ceremony - part 39",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "5XK2C9w6oVk",
+                        "video_name": "周杰倫 Jay Chou【愛在西元前 Love before AD】Official MV",
+                        "description": "wedding ceremony - part 40",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "qkTl569q-Ks",
+                        "video_name": "Jay Chou - Secret That Cannot Be Told (Bu Neng Shuo De Mi Mi) Sub'd",
+                        "description": "wedding ceremony - part 41",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "28OzQTY0z0s",
+                        "video_name": "Jay Chou - Simple Love Jian Dan Ai  简单的爱 With Lyrics",
+                        "description": "wedding ceremony - part 42",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "-biOGdYiF-I",
+                        "video_name": "周杰倫 Jay Chou【Mojito】Official MV ★ Check out \"J-Style Trip\" on Netflix -Travelogue, Magic and Fun!",
+                        "description": "wedding ceremony - part 43",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "ylP20brvGJo",
+                        "video_name": "Jay Chou 周杰倫 - Dao Xiang 稻香 Fragrant Rice (Pinyin+English Lyrics)",
+                        "description": "wedding ceremony - part 44",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "aaM7qG2ycjk",
+                        "video_name": "周杰倫 Jay Chou【髮如雪 Hair White as Snow】-Official Music Video",
+                        "description": "wedding ceremony - part 45",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "iNa1n6Gch7E",
+                        "video_name": "sapientdream - Past Lives (Lyrics)",
+                        "description": "wedding ceremony - part 46",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "DI21b6hjNVI",
+                        "video_name": "Chanyeol, Punch - Stay With Me, Goblin OST (Piano Cover by Riyandi Kusuma)",
+                        "description": "wedding ceremony - part 47",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "l3FV7pnTNeo",
+                        "video_name": "Jarryd James - 1000x (Official Audio) ft. BROODS",
+                        "description": "wedding ceremony - part 48",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "Gx_pUwCx7RI",
+                        "video_name": "The Last String",
+                        "description": "wedding ceremony - part 49",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "YbnwwdLnhsk",
+                        "video_name": "Ha Sungwoon (하성운) - 'Fall In You' True Beauty OST Part 6 (여신강림 OST Part 6) Lyrics/가사 [Han|Rom|Eng]",
+                        "description": "wedding ceremony - part 50",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "D1PvIWdJ8xo",
+                        "video_name": "[MV] IU(아이유) _ Blueming(블루밍)",
+                        "description": "wedding ceremony - part 51",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "ZsU9JZckGMQ",
+                        "video_name": "MJ (써니사이드) & 구인회 - 거절하지 말아요 [Feat. 친절한 현정C] (Official Full Audio)",
+                        "description": "wedding ceremony - part 52",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "hKWc2bAPsXA",
+                        "video_name": "[LYRIC] Vromance (브로맨스) - Am I In Love (사랑에 빠진 걸까요) (Feat. Obroject) [Han-Rom-Eng]",
+                        "description": "wedding ceremony - part 53",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "w77fCN8GasQ",
+                        "video_name": "Kim Min Seung (김민승) - From Now On (앞으로) Lyrics [Weightlifting Fairy Kim Bok Joo OST Part 2]",
+                        "description": "wedding ceremony - part 54",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "64VZUNTmGQM",
+                        "video_name": "PARK BOM - YOU AND I M/V",
+                        "description": "wedding ceremony - part 55",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "0sXSuG1arKQ",
+                        "video_name": "[MV] YOON MI RAE(윤미래) _ You are my world(그대라는 세상) (The Legend of The Blue Sea(푸른 바다의 전설) OST Part.2)",
+                        "description": "wedding ceremony - part 56",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "euy_otqP5Uw",
+                        "video_name": "[MV] 백현 (BAEKHYUN) - My Love (너를 사랑하고 있어) [낭만닥터 김사부 2 (Dr. Romantic 2) OST Part.1]",
+                        "description": "wedding ceremony - part 57",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "bdBlY0UZlsE",
+                        "video_name": "BIGBANG - Haru Haru (piano cover & sheets) [하루하루]",
+                        "description": "wedding ceremony - part 58",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "MzCbEdtNbJ0",
+                        "video_name": "BIGBANG - HARU HARU(하루하루) M/V",
+                        "description": "wedding ceremony - part 59",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "doFK7Eanm3I",
+                        "video_name": "G-DRAGON - 니가 뭔데(WHO YOU?) M/V",
+                        "description": "wedding ceremony - part 60",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "2noBlc97a-I",
+                        "video_name": "林俊傑 - 交換餘生【動態歌詞】♪",
+                        "description": "wedding ceremony - part 61",
+                        "start": 0,
+                        "end": 0
+                    },
+                    {
+                        "video_id": "Klawk-yTbTM",
+                        "video_name": "薛之謙 Joker Xue《情書》｜Official Music Video",
+                        "description": "wedding ceremony - part 62",
+                        "start": 0,
+                        "end": 0
                     }
                 ]
             }
