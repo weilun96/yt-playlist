@@ -15,57 +15,64 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #faf8f5;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
             color: #3c2e26;
+            overflow: hidden;
         }
 
         .container {
-            max-width: 100%;
-            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            border: 1px solid #f0ebe5;
         }
 
         .header {
             background: #f7f3f0;
             color: #8b4513;
-            padding: 40px 30px;
+            padding: 20px 30px;
             text-align: center;
             border-bottom: 1px solid #f0ebe5;
+            flex-shrink: 0;
         }
 
         .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
+            font-size: 1.8rem;
+            margin-bottom: 4px;
             font-weight: 300;
             letter-spacing: -0.5px;
         }
 
         .header p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.7;
             font-weight: 400;
+            margin: 0;
         }
 
         .main-content {
             display: grid;
             grid-template-columns: 350px 1fr;
             gap: 0;
-            min-height: 600px;
+            flex: 1;
+            overflow: hidden;
         }
 
         .sidebar {
             background: #fefcf9;
-            padding: 30px;
+            padding: 20px;
             border-right: 1px solid #f0ebe5;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .playlist-selector {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .playlist-selector label {
@@ -95,7 +102,7 @@
         }
 
         .video-list {
-            max-height: 500px;
+            flex: 1;
             overflow-y: auto;
         }
 
@@ -150,20 +157,21 @@
         }
 
         .player-section {
-            padding: 30px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .video-player {
             width: 100%;
-            aspect-ratio: 16/9;
+            max-height: 60vh;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid #f0ebe5;
         }
 
@@ -173,8 +181,8 @@
         }
 
         .video-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
             color: #3c2e26;
             font-weight: 400;
         }
@@ -196,7 +204,7 @@
         .controls {
             display: flex;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 15px;
             justify-content: center;
         }
 
@@ -274,14 +282,15 @@
             .sidebar {
                 border-right: none;
                 border-bottom: 1px solid #f0ebe5;
+                max-height: 40vh;
             }
 
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
-            body {
-                padding: 10px;
+            .video-player {
+                max-height: 50vh;
             }
         }
     </style>
@@ -296,15 +305,9 @@
 
         <div class="main-content">
             <div class="sidebar">
-                <div class="json-input">
-                    <label for="jsonInput">Load JSON playlist data:</label>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <input type="file" id="jsonFileInput" accept=".json" style="flex: 1; padding: 8px; border: 1px solid #e6ddd4; border-radius: 6px; background: white; color: #3c2e26;">
-                        <button class="btn btn-secondary" onclick="loadFromFile()">Load File</button>
-                    </div>
-                    <textarea id="jsonInput"
-                        placeholder='[{"playlist_id": "playlist1", "playlist_name": "My Playlist", "video_list": [{"video_id": "dQw4w9WgXcQ", "start": 0, "end": 0, "description": "Sample video", "video_name": "Sample Video Name"}]}]'></textarea>
-                    <button class="btn btn-primary" onclick="loadPlaylistData()">Load from Text</button>
+                <div class="playlist-info">
+                    <h3 style="color: #8b4513; margin-bottom: 15px; font-weight: 500;">🎵 Sk CT Solemnisation Playlist</h3>
+                    <p style="color: #8b4513; font-size: 14px; opacity: 0.8; margin-bottom: 20px;">20 wedding ceremony videos ready to play</p>
                 </div>
 
                 <div class="playlist-selector">
@@ -337,27 +340,6 @@
         let player = null;
         let isPlaying = false;
 
-        // Load playlist data from JSON file
-        function loadFromFile() {
-            const fileInput = document.getElementById('jsonFileInput');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                alert('Please select a JSON file');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    processPlaylistData(data);
-                } catch (error) {
-                    alert('Invalid JSON file: ' + error.message);
-                }
-            };
-            reader.readAsText(file);
-        }
 
         // Process playlist data (common function for both file and text input)
         function processPlaylistData(data) {
@@ -398,28 +380,9 @@
 
             populatePlaylistSelector();
             console.log('Playlist selector populated');
-            // Only show alert for manual loading, not auto-loading
-            if (document.getElementById('jsonInput').value.trim() !== '') {
-                alert(`Loaded ${playlists.length} playlist(s) successfully!`);
-            }
+            // Playlist loaded successfully
         }
 
-        // Load playlist data from JSON input
-        function loadPlaylistData() {
-            const jsonInput = document.getElementById('jsonInput').value.trim();
-
-            if (!jsonInput) {
-                alert('Please enter JSON data');
-                return;
-            }
-
-            try {
-                const data = JSON.parse(jsonInput);
-                processPlaylistData(data);
-            } catch (error) {
-                alert('Invalid JSON format: ' + error.message);
-            }
-        }
 
         // Populate playlist selector dropdown
         function populatePlaylistSelector() {
@@ -565,6 +528,12 @@
                     playPreviousVideo();
                     break;
             }
+        });
+
+        // Load default playlist when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading hardcoded playlist data...');
+            processPlaylistData(defaultPlaylistData);
         });
 
         // Hardcoded playlist data - Sk CT Solemnisation Playlist
@@ -716,12 +685,6 @@
                 ]
             }
         ];
-
-        // Load default playlist when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Loading hardcoded playlist data...');
-            processPlaylistData(defaultPlaylistData);
-        });
     </script>
 </body>
 
