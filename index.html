@@ -351,6 +351,8 @@
         let currentVideoIndex = 0;
         let player = null;
         let isPlaying = false;
+        let autoAdvanceTimer = null;
+        let userInteracted = false;
 
 
         // Process playlist data (common function for both file and text input)
@@ -477,6 +479,15 @@
                 return;
             }
 
+            // Clear any existing auto-advance timer
+            if (autoAdvanceTimer) {
+                clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = null;
+            }
+            
+            // Reset user interaction flag
+            userInteracted = false;
+
             const video = currentPlaylist.video_list[currentVideoIndex];
             const playerContainer = document.getElementById('playerContainer');
 
@@ -506,9 +517,23 @@
             // Set up auto-advance if end time is specified
             if (video.end > 0) {
                 const duration = video.end - video.start;
-                setTimeout(() => {
-                    playNextVideo();
+                autoAdvanceTimer = setTimeout(() => {
+                    if (!userInteracted) {
+                        playNextVideo();
+                    }
                 }, duration * 1000);
+            }
+
+            // Add event listeners to detect user interaction
+            const iframe = document.getElementById('youtubePlayer');
+            if (iframe) {
+                iframe.addEventListener('click', () => {
+                    userInteracted = true;
+                    if (autoAdvanceTimer) {
+                        clearTimeout(autoAdvanceTimer);
+                        autoAdvanceTimer = null;
+                    }
+                });
             }
         }
 
