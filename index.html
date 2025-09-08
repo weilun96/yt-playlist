@@ -383,7 +383,11 @@
                 }
             });
 
-            playlists = data.filter(item => item.playlist_id && item.video_list);
+            console.log('Data before filtering:', data);
+            playlists = data.filter(item => {
+                console.log('Checking item:', item, 'has playlist_id:', !!item.playlist_id, 'has video_list:', !!item.video_list);
+                return item.playlist_id && item.video_list;
+            });
             console.log('Filtered playlists:', playlists);
             
             if (playlists.length === 0) {
@@ -563,183 +567,161 @@
             }
         });
 
-        // Auto-load playlist.json on page load
-        async function loadDefaultPlaylist() {
-            console.log('Attempting to load playlist.json...');
-            try {
-                const response = await fetch('./playlist.json');
-                console.log('Response status:', response.status);
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('JSON data loaded:', data);
-                    processPlaylistData(data);
-                    console.log('Default playlist loaded successfully');
-                } else {
-                    console.log('playlist.json not found (status:', response.status, '), using embedded data');
-                    loadEmbeddedData();
-                }
-            } catch (error) {
-                console.log('Error loading playlist.json:', error);
-                console.log('This might be due to CORS restrictions when opening file directly. Using embedded data.');
-                loadEmbeddedData();
+        // Hardcoded playlist data - Sk CT Solemnisation Playlist
+        const defaultPlaylistData = [
+            {
+                "playlist_id": "PLTkJ3R8lZRaMZS2v7Lre09OWtvJKekotd",
+                "playlist_name": "Sk CT Solemnisation Playlist",
+                "video_list": [
+                    {
+                        "video_id": "iNa1n6Gch7E",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 1"
+                    },
+                    {
+                        "video_id": "JpZHq7Yk2AY",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 2"
+                    },
+                    {
+                        "video_id": "WSSIIC58Fsc",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 3"
+                    },
+                    {
+                        "video_id": "tyoAsprwDRc",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 4"
+                    },
+                    {
+                        "video_id": "uv6fDAgzNYs",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 5"
+                    },
+                    {
+                        "video_id": "1elGqARTb1Q",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 6"
+                    },
+                    {
+                        "video_id": "v7iAcSRY7vo",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 7"
+                    },
+                    {
+                        "video_id": "5HsjJULm_UY",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 8"
+                    },
+                    {
+                        "video_id": "E7ohTN1NTPU",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 9"
+                    },
+                    {
+                        "video_id": "bdBlY0UZlsE",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 10"
+                    },
+                    {
+                        "video_id": "Qe2G6Vs1V_Q",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 11"
+                    },
+                    {
+                        "video_id": "NqvA4SLA2jE",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 12"
+                    },
+                    {
+                        "video_id": "Ic458P8NMew",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 13"
+                    },
+                    {
+                        "video_id": "DI21b6hjNVI",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 14"
+                    },
+                    {
+                        "video_id": "ok2pqepWTLU",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 15"
+                    },
+                    {
+                        "video_id": "PEM0Vs8jf1w",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 16"
+                    },
+                    {
+                        "video_id": "l3FV7pnTNeo",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 17"
+                    },
+                    {
+                        "video_id": "AKjgg3I6HEQ",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 18"
+                    },
+                    {
+                        "video_id": "rtOvBOTyX00",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 19"
+                    },
+                    {
+                        "video_id": "-BjZmE2gtdo",
+                        "start": 0,
+                        "end": 0,
+                        "description": "Wedding ceremony video",
+                        "video_name": "Wedding Ceremony - Part 20"
+                    }
+                ]
             }
-        }
-
-        // Load embedded playlist data (your solemnisation playlist)
-        function loadEmbeddedData() {
-            const embeddedData = [
-                {
-                    "playlist_id": "PLTkJ3R8lZRaMZS2v7Lre09OWtvJKekotd",
-                    "playlist_name": "Sk CT Solemnisation Playlist",
-                    "video_list": [
-                        {
-                            "video_id": "iNa1n6Gch7E",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 1"
-                        },
-                        {
-                            "video_id": "JpZHq7Yk2AY",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 2"
-                        },
-                        {
-                            "video_id": "WSSIIC58Fsc",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 3"
-                        },
-                        {
-                            "video_id": "tyoAsprwDRc",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 4"
-                        },
-                        {
-                            "video_id": "uv6fDAgzNYs",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 5"
-                        },
-                        {
-                            "video_id": "1elGqARTb1Q",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 6"
-                        },
-                        {
-                            "video_id": "v7iAcSRY7vo",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 7"
-                        },
-                        {
-                            "video_id": "5HsjJULm_UY",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 8"
-                        },
-                        {
-                            "video_id": "E7ohTN1NTPU",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 9"
-                        },
-                        {
-                            "video_id": "bdBlY0UZlsE",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 10"
-                        },
-                        {
-                            "video_id": "Qe2G6Vs1V_Q",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 11"
-                        },
-                        {
-                            "video_id": "NqvA4SLA2jE",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 12"
-                        },
-                        {
-                            "video_id": "Ic458P8NMew",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 13"
-                        },
-                        {
-                            "video_id": "DI21b6hjNVI",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 14"
-                        },
-                        {
-                            "video_id": "ok2pqepWTLU",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 15"
-                        },
-                        {
-                            "video_id": "PEM0Vs8jf1w",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 16"
-                        },
-                        {
-                            "video_id": "l3FV7pnTNeo",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 17"
-                        },
-                        {
-                            "video_id": "AKjgg3I6HEQ",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 18"
-                        },
-                        {
-                            "video_id": "rtOvBOTyX00",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 19"
-                        },
-                        {
-                            "video_id": "-BjZmE2gtdo",
-                            "start": 0,
-                            "end": 0,
-                            "description": "Wedding ceremony video",
-                            "video_name": "Wedding Ceremony - Part 20"
-                        }
-                    ]
-                }
-            ];
-            processPlaylistData(embeddedData);
-        }
+        ];
 
         // Load default playlist when page loads
-        document.addEventListener('DOMContentLoaded', loadDefaultPlaylist);
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading hardcoded playlist data...');
+            processPlaylistData(defaultPlaylistData);
+        });
     </script>
 </body>
 
