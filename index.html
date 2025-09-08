@@ -309,12 +309,6 @@
 
         <div class="main-content">
             <div class="sidebar">
-                <div class="playlist-info">
-                    <h3 style="color: #8b4513; margin-bottom: 15px; font-weight: 500;">🎵 Sk CT Solemnisation Playlist
-                    </h3>
-                    <p style="color: #8b4513; font-size: 14px; opacity: 0.8; margin-bottom: 20px;">20 wedding ceremony
-                        videos ready to play</p>
-                </div>
 
                 <div class="playlist-selector">
                     <label for="playlistSelect">Select Playlist:</label>
@@ -322,6 +316,14 @@
                         <option value="">Choose a playlist...</option>
                     </select>
                 </div>
+                <div class="playlist-info">
+                    <h3 id="playlistTitle" style="color: #8b4513; margin-bottom: 15px; font-weight: 500;">🎵 Select a
+                        playlist to view details</h3>
+                    <p id="playlistDescription"
+                        style="color: #8b4513; font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Choose a playlist
+                        from the dropdown above</p>
+                </div>
+
 
                 <div class="video-list" id="videoList">
                     <div class="no-playlist">Select a playlist to view videos</div>
@@ -412,11 +414,23 @@
                 currentPlaylist = null;
                 document.getElementById('videoList').innerHTML = '<div class="no-playlist">Select a playlist to view videos</div>';
                 document.getElementById('playerContainer').innerHTML = '<div class="no-playlist"><h3>Welcome to YouTube Playlist Player</h3><p>Load your JSON data and select a playlist to start playing videos</p></div>';
+
+                // Reset playlist info
+                document.getElementById('playlistTitle').textContent = '🎵 Select a playlist to view details';
+                document.getElementById('playlistDescription').textContent = 'Choose a playlist from the dropdown above';
                 return;
             }
 
             currentPlaylist = playlists[playlistIndex];
             currentVideoIndex = 0;
+
+            // Update playlist info dynamically
+            const playlistTitle = document.getElementById('playlistTitle');
+            const playlistDescription = document.getElementById('playlistDescription');
+
+            playlistTitle.textContent = `🎵 ${currentPlaylist.playlist_name || currentPlaylist.playlist_id}`;
+            playlistDescription.textContent = `${currentPlaylist.video_list.length} video${currentPlaylist.video_list.length !== 1 ? 's' : ''} ready to play`;
+
             displayVideoList();
             playCurrentVideo();
         }
