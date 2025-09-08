@@ -371,6 +371,26 @@
             }
         }
 
+        // Backup monitoring function to check if video has reached end time
+        function checkVideoEndTime() {
+            if (player && currentPlaylist && currentPlaylist.video_list[currentVideoIndex]) {
+                const video = currentPlaylist.video_list[currentVideoIndex];
+                if (video.end > 0) {
+                    try {
+                        const currentTime = player.getCurrentTime();
+                        console.log(`Current time: ${currentTime}, End time: ${video.end}`);
+                        if (currentTime >= video.end - 0.5) { // 0.5 second buffer
+                            console.log('Video reached end time, playing next...');
+                            playNextVideo();
+                            return;
+                        }
+                    } catch (e) {
+                        console.log('Error getting current time:', e);
+                    }
+                }
+            }
+        }
+
         // Process playlist data (common function for both file and text input)
         function processPlaylistData(data) {
             console.log('Processing playlist data:', data);
